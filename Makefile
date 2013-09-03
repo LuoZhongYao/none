@@ -34,7 +34,7 @@ clean:
 	@for dir in  $(SUBDIRS);do\
 		$(MAKE) -C $$dir r=$r clean || exit 1;\
 	done
-	@-rm -f lib/*
+	@-rm -f lib/lib*
 	@-rm -f kernel/none
 
 debug:
@@ -42,7 +42,7 @@ debug:
 
 tar: 
 	@mount -o loop -t ext2 $d $(boot)
-	@mount $h $(hw)
+#	@mount $h $(hw)
 	@chmod a+w $(hw) $(boot)
 	@(cd $(TESTSDIR);for exec in $(EXECS);do\
 		cp $$exec ../$(hw);\
@@ -51,7 +51,7 @@ tar:
 
 stop:
 	@umount $(boot)
-	@umount $(hw)
+#	@umount $(hw)
 
 go: tar stop
 	@mount -o loop -t ext2 $d $(boot)
