@@ -28,3 +28,11 @@ tags
 *.src
 # 临时文件价
 mnt/*
+
+# test file
+tests/date
+tests/shell
+tests/test
+
+# kernel file
+kernel/none

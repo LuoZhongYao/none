@@ -33,5 +33,8 @@ boot: floppy
 # disable the mouse
 mouse: enabled=0
 
+# where do we send log messages?
+log: bochsout.txt
+
 # enable key mapping, using US layout as default.
 keyboard_mapping: enabled=1, map=/usr/local/share/bochs/keymaps/x11-pc-us.map
