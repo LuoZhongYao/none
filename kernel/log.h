@@ -1,7 +1,7 @@
 #ifndef __LOG_H__
 #define __LOG_H__
 
-#define xDEBUG
+#define DEBUG
 
 #define LOG_PANIC       0 /* system is unavailable */
 #define LOG_HW          1 /* hardware error */

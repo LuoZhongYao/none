@@ -37,6 +37,7 @@ endif
 
 src_dirs    += .
 src_files	+= $(foreach dir,$(src_dirs),$(wildcard $(dir)/*.[csS]))
+src_files 	:= $(subst ./,,$(src_files))
 
 $(shell mkdir -p  $(lib_dir)/ $(out_dir)/ $(bin_dir)/)
 
