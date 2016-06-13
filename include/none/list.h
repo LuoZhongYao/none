@@ -405,7 +405,7 @@ static inline void list_splice_tail_init(struct list_head *list,
  * @head:	the head for your list.
  */
 #define list_for_each_safe(pos, n, head) \
-	for (struct list_head * pos = (head)->next, n = pos->next; pos != (head); \
+	for (struct list_head * pos = (head)->next, *n = pos->next; pos != (head); \
 		pos = n, n = pos->next)
 
 /**

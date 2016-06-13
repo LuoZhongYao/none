@@ -4,6 +4,7 @@
 .PHONY:all clean
 BUILD		  := LIBRARY
 CLEANS		  := $(basename $(wildcard *.c))
+objs 		  := $(patsubst %.c,%.o,$(wildcard src/*.c))
 
 ifeq ($(root_dir),"")
 $(error Undefined project root directory, you should run the 'source tools/setenv.sh' in the project root directory.)

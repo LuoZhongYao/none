@@ -1,9 +1,9 @@
 /*********************************************************************************
  * test code
  *********************************************************************************/
-#include "graphics.h"
 #include "png.h"
 #include "readpng.h"
+#include <graphics.h>
 #include <stdlib.h>
 #include <none/fcntl.h>
 #include <none/types.h>

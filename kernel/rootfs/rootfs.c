@@ -172,7 +172,6 @@ static void rootfs_debug(object_t caller,unsigned long cmd,unsigned a1,unsigned 
 
 static void rootfs_init(void){
     int error;
-    LOGI("Startup...\n");
     super = minix_sget(RAMDISK_PID,&error);
     if(super == NULL) 
         panic("Don't read super block.\n");
@@ -187,7 +186,6 @@ static void rootfs_init(void){
 int rootfs_main(void )
 {
     rootfs_init();
-    LOGI("Workloop\n");
     workloop();
     return 0;
 }

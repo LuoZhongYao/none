@@ -18,6 +18,28 @@ static void pixel(graphics_t *thiz,int x,int y)
     }
 }
 
+static color_t getpixel(graphics_t *thiz,int x,int y)
+{
+    unsigned long offset = 0;
+    color_t c = {.c24b = 0};
+    if(x < WIDTH && y < HEIGHT){
+        offset = (y * 800 + x) * 3;
+        c.c16m.b = (video + offset)[0];
+        c.c16m.g = (video + offset)[1];
+        c.c16m.r = (video + offset)[2];
+    }
+    return c;
+}
+
+static void fill(graphics_t *G)
+{
+    for(int y = 0;y < HEIGHT;y++) {
+        for(int x = 0;x < WIDTH;x++) {
+            G->pixel(G,x,y);
+        }
+    }
+}
+
 static void enable(void)
 {
     graphics_install_bochs(WIDTH,HEIGHT);
@@ -38,12 +60,14 @@ graphics_t *newM800x600x888(void)
     graphics_t *g;
     g = newGraphics();
     if(g){
-        g->pixel = pixel;
-        g->enable = enable;
-        g->disable = disable;
-        g->clear = clear;
-        g->height = HEIGHT;
-        g->width = WIDTH;
+        g->pixel    = pixel;
+        g->getpixel = getpixel;
+        g->enable   = enable;
+        g->fill     = fill;
+        g->disable  = disable;
+        g->clear    = clear;
+        g->height   = HEIGHT;
+        g->width    = WIDTH;
     }
     return g;
 }

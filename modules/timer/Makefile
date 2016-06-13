@@ -3,15 +3,9 @@
 #	Author : lzy
 .PHONY:all clean
 # LIBS 
-STATIC_LIBARY := glib posix c zlib png
+STATIC_LIBARY :=  posix c
 BUILD		  := BINARY
-subdir		  := true
 ENTRY 		  := 0xc00000
-module_name	  := pv
-#LDFLAGS	 	  := -e main
-include_dir   += $(root_dir)/libs/glib/include\
-				 $(root_dir)/libs/libpng\
-				 $(root_dir)/libs/zlib
 CLEANS		  := $(basename $(wildcard *.c))
 
 ifeq ($(root_dir),)

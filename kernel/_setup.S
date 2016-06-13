@@ -40,7 +40,6 @@
 #define R1          0x0020      //
 #define R2          0x0040      //
 #define R3          0x0060      //ring 3
-#define _STACK      0x3ffff0
 
 GDT_LEN = gdt_end-gdt_start
 .text
@@ -99,7 +98,7 @@ new_env:
     mov     %eax,%ss
     mov     %eax,%fs
     mov     %eax,%gs
-    mov     $_STACK,%esp  
+    mov     $KERNEL_STACK,%esp  
     call    main   
     sti
 0:

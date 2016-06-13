@@ -3,10 +3,12 @@
 #include <stdint.h>
 
 typedef union {
-    uint8_t c256;
+    uint8_t  c8b;
+    uint16_t c16b;
+    uint32_t c24b;
     struct { uint8_t b,g,r; }c16m;
-    struct { uint16_t r:5,g:6,b:5; }c16b;
-    struct { uint16_t r:5,g:5,b:5,u:1; }c15b;
+    struct { uint16_t r:5,g:6,b:5; } c64k;
+    struct { uint16_t r:5,g:5,b:5,u:1; }c32k;
 }color_t;
 
 typedef struct { int x,y; }pixel_t;
@@ -23,7 +25,9 @@ struct graphics_t{
     void (*disable)(void);
     void (*clear)(void);
     void (*setcolor)(graphics_t *thiz,color_t color);
+    color_t (*getpixel)(graphics_t *thiz,int x, int y);
     void (*pixel)(graphics_t *thiz,int x,int y);
+    void (*fill)(graphics_t *thiz);
     void (*scanline)(int x1,int x2,int y);
 
     /* genices function */

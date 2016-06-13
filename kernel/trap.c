@@ -73,7 +73,7 @@ void print_cpu_info(Registers *reg)
 
 static void print_task_info(String str,long nr)
 {
-    printk("\erTrap: %s %x.\nObject<%p>:%ld,%s\ew\n",str,nr,self(),self()->id,self()->name);
+    printk("\er******* %s<%p:%ld> %s(%x) *******\ew\n",self()->name,self(),self()->id,str,nr);
 }
 
 static inline void die(String str,long *reg,long nr)
@@ -158,13 +158,16 @@ extern void do_general_protection(long code,long *reg)
 
 extern void do_page_fault(long code,long *reg)
 {
-    (void)reg;
+    int ret;
     void* cr2 = (void*)getcr2();
     if(!(code & 0x1)){
-        run(MM_PID,MIF_NOPAGE,cr2,0,0);
+        ret = run(MM_PID,MIF_NOPAGE,cr2,0,0);
     } else if(code & 0x2){
-        run(MM_PID,MIF_WPPAGE,cr2,0,0);
+        ret = run(MM_PID,MIF_WPPAGE,cr2,0,0);
     }
+
+    if(ret < 0)
+        die("page fault",reg,code);
 }
 
 extern void do_copr_error(long code,long *reg)

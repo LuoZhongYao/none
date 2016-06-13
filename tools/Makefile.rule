@@ -21,7 +21,7 @@ SHELL	:= /bin/bash
 #	目录定义
 ##########################################################################	
 local_path  := $(shell pwd)
-include_dir += $(root_dir)/include
+include_dir += $(root_dir)/include include
 o 			:= $(root_dir)/out
 lib_dir 	+= $o/lib
 bin_dir	    := $o/bin
@@ -73,7 +73,7 @@ LD	:= ld
 a_flags  += --32
 c_flags  += $(addprefix -I,$(include_dir)) -m32 -std=c11 -fno-builtin\
 		   	-nostdinc -Wall -Werror -D__NONE__\
-			-fno-stack-protector 
+			-fno-stack-protector
 
 ########################################################################
 #	中间文件生成

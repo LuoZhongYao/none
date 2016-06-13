@@ -122,7 +122,7 @@ void mem_init(void){
     LOGD("%08x  %08x  %08x  %08x\n",module,module->mod_start,module->mod_end,ramdiskCount);
 
     /*! 将让ramdisk 拷贝到合适的位置 !*/
-    memcpy((void*)RAMDISK_ADDR,mod_start,ramdiskCount);
+    memmove((void*)RAMDISK_ADDR,mod_start,ramdiskCount);
 
     unsigned char busy = 100;
 

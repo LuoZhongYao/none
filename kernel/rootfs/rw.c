@@ -22,7 +22,9 @@ static int v2_read(struct inode *inode,void *buffer,off_t offset,cnt_t count){
     /*! ~~~~~~~~~~~~~~~~~~~~~~~ 第二步,拷贝BLOCK_SIZE对齐的块 ~~~~~~~~~~~~~~~~~~ ~*/
     cnt_t n = count / BLOCK_SIZE;
     foreach(i,0,n){
-        try(0 > ,inode_bread(inode,blk,zone),throw e_zone_rw);
+        try(0 > ,inode_bread(inode,blk,zone),{
+            nrbytes = -1;
+            throw e_zone_rw;});
         memcpy(buffer + nrbytes,blk,count);
         count -= BLOCK_SIZE;
         nrbytes += BLOCK_SIZE;

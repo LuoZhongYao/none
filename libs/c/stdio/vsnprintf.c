@@ -96,7 +96,9 @@ inn_vsnprintf:
       case 'c':
 	ch=(char)va_arg(arg_ptr,int);
       case '%':
-	if (str) str[apos]=ch; ++apos;
+	if (str) {
+        str[apos]=ch; ++apos;
+    }
 	break;
 
       case 's':
@@ -107,14 +109,12 @@ inn_vsnprintf:
 	buf_len=strlen(pb);
 
 print_out:
-	if (str) {
-	  if (width && (!flag_left))
-	  {
+	if (str != NULL) {
+	  if (width && (!flag_left)) {
 	    for (pad=width-buf_len; pad>0; --pad) str[apos++]=padwith;
 	  }
 	  for(i=0;(pb[i])&&(apos<size);i++) { str[apos++]=pb[i]; } /* strncpy */
-	  if (width && (flag_left))
-	  {
+	  if (width && (flag_left)) {
 	    for (pad=width-buf_len; pad>0; --pad) str[apos++]=padwith;
 	  }
 	} else {
@@ -140,8 +140,7 @@ print_out:
       case 'X':
       case 'x':
 	i=16;
-	if (flag_hash)
-	{
+	if (flag_hash) {
 	  if (str) {
 	    str[apos++]='0';
 	    str[apos++]=ch;
@@ -205,7 +204,9 @@ num_vsnprintf:
       if (str) str[apos]=0;
       return apos;
     default:
-      if (str) str[apos]=ch; apos++;
+      if (str) {
+          str[apos]=ch; apos++;
+      }
       break;
     }
   }

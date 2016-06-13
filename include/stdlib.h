@@ -19,7 +19,6 @@ extern void free(void *ptr);
 extern void *calloc(size_t nmemb, size_t size);
 extern void *realloc(void *ptr, size_t size);
 #define abort() exit(0)
-extern int abs(int j);
 extern int   atoi(const char *);
 extern void  srand(unsigned seed);
 extern int   rand(void);
@@ -31,4 +30,15 @@ extern long strtol(const char *nptr, char **endptr, int base);
 extern int atoi(const char *str);
 extern int getopt(int argc, char * const argv[], const char *optstring);
 extern int optind;
+
+static inline int abs(int i)
+{
+    return i >= 0 ? i : -1;
+}
+
+static inline long labs(long n)
+{
+    return n >= 0 ? n : -1;
+}
+
 #endif

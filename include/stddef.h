@@ -3,6 +3,8 @@
 
 typedef unsigned long size_t;
 typedef unsigned long ptrdiff_t;
+typedef int wint_t;
+typedef int wchar_t;
 
 
 #ifndef NULL
