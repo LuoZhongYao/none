@@ -77,8 +77,9 @@ start:
     mov     %ebx,envp
 
     mov     %cr0,%eax
-    or      $0x20,%eax
+    or      $0x22,%eax
     mov     %eax,%cr0
+    fninit
 
     /* 重新设置GDT,GDT被放置到GDT_TABLE处 */
     mov     $GDT_TABLE,%edi

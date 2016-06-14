@@ -42,7 +42,7 @@ $(ramdisk) : modules
 	$(Q) cp $(out_dir)/bin/ $(out_dir)/ramdisk/ -r
 	$(Q) -rm -f -- $(modules_dir)/bin/none
 	$(Q) dd if=/dev/zero of=$(ramdisk) bs=1K count=4K
-	$(Q) mkfs.minix -v $(ramdisk)
+	$(Q) mkfs.minix -2 $(ramdisk)
 	$(Q) su -c 'mount $(ramdisk) $(modules_dir)'
 	$(Q) chmod a+w $(modules_dir)
 	$(Q) cp $(out_dir)/ramdisk/* $(modules_dir)/ -r

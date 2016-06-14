@@ -202,11 +202,9 @@ none:
     outb    %al,$INT_CTLMASK;    \
     movb    $0x20,%al;   \
     outb    %al,$INT_CTL; \
-    sti; \
     push    $irq;   \
     call    irq_handler;    \
     addl    $4,%esp;    \
-    cli; \
     inb     $INT_CTLMASK,%al;    \
     andb    $(~(1<<(irq))),%al; \
     outb    %al,$INT_CTLMASK;    \
@@ -275,11 +273,9 @@ hwint07:
     outb    %al,$INT_CTL; \
     jmp     .+2;     \
     outb    %al,$INT2_CTL;    \
-    sti;     \
     pushl   $irq;   \
     call    irq_handler;  \
     addl    $4,%esp;\
-    cli;         \
     inb     $INT2_CTLMASK,%al;   \
     andb    $(~(1<<(irq-8))),%al;   \
     outb    %al,$INT2_CTLMASK;   \

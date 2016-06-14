@@ -24,7 +24,7 @@
 #   define xRAMDISK_DEBUG
 #   define xSYS_DEBUG
 #   define xMM_DEBUG
-#   define MP_DEBUG
+#   define xMP_DEBUG
 #   define xPRINT_SCHED
 #else
 #   define DBG(...)

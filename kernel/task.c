@@ -158,6 +158,7 @@ static void free_iLink(iLink *ptr)
         first_iLink = ptr;
         count_iLink++;
     } else {
+        printk("%d\n",count_iLink);
         kfree(ptr);
     }
 }
