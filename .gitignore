@@ -36,6 +36,7 @@ GTAGS
 
 # 临时文件夹
 out/
+build/
 external/
 modules/ucGUI
 .ycm_extra_conf.py*
