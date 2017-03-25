@@ -17,7 +17,7 @@
 *.app
 
 *.txt
-!CMakeLists.txt
+!*CMakeLists.txt
 *.log
 *.d
 
