@@ -1,6 +1,14 @@
+addons:
+    apt:
+        sources:
+            - george-edison55-precise-backports # cmake 3.2.3 / doxygen 1.8.3
+        packages:
+            - cmake
+            - cmake-data
+
 language: c
 compiler:
-    - gcc
+    - gcc-5.0
     - clang
 
 before_script:
