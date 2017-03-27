@@ -11,7 +11,7 @@ addons:
 
 language: c
 compiler:
-    - gcc-5.0
+    - gcc-5
 
 before_script:
     - mkdir build
