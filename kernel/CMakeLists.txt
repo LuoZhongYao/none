@@ -7,6 +7,20 @@ aux_source_directory(drivers drivers)
 aux_source_directory(drivers/input input)
 
 enable_language(ASM-ATT)
+
+
+set(ASM-OFFSETS asm-offsets)
+set(ASM_OFFSET_PROGM "${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} -S -I${CMAKE_CURRENT_SOURCE_DIR} -I${CMAKE_SOURCE_DIR}/include")
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+add_custom_command(
+    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${ASM-OFFSETS}.h
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/asm-offsets.def ${CMAKE_CURRENT_BINARY_DIR}/${ASM-OFFSETS}.c
+    COMMAND sh -c "${ASM_OFFSET_PROGM} ${CMAKE_CURRENT_BINARY_DIR}/${ASM-OFFSETS}.c -o ${CMAKE_CURRENT_BINARY_DIR}/${ASM-OFFSETS}.s"
+    COMMAND ${CMAKE_SOURCE_DIR}/tools/asm-offsets.sh ${CMAKE_CURRENT_BINARY_DIR}/${ASM-OFFSETS}.s ${CMAKE_CURRENT_BINARY_DIR}/${ASM-OFFSETS}.h
+    DEPENDS ${CMAKE_SOURCE_DIR}/tools/asm-offsets.sh ${CMAKE_CURRENT_SOURCE_DIR}/asm-offsets.def ${CMAKE_CURRENT_SOURCE_DIR}/object.h ${CMAKE_CURRENT_SOURCE_DIR/}task.h
+    VERBATIM
+    )
+
 add_executable(none 
     _setup.S
     x86.S
@@ -14,7 +28,8 @@ add_executable(none
     ${mm}
     ${rootfs}
     ${drivers}
-    ${input})
+    ${input}
+    ${CMAKE_CURRENT_BINARY_DIR}/${ASM-OFFSETS}.h)
 
 target_link_libraries(none
     -Wl,--start-group
@@ -25,6 +40,7 @@ target_link_libraries(none
     -Wl,--no-whole-archive
     -Wl,--end-group
     )
+
 install(TARGETS 
     none
     DESTINATION boot/)

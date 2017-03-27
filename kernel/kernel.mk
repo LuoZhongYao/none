@@ -18,7 +18,7 @@ define offsets
      echo " *"; \
      echo " */"; \
      echo ""; \
-     sed -ne $(sed-y) $(out_dir)/offsets.s; \
+     sed -ne $(sed-y) $(out_dir)/asm-offsets.s; \
      echo ""; \
      echo "#endif" ) > $@
 endef
@@ -35,11 +35,11 @@ endef
 version.h :
 	$Q $(version)  
 
-offsets.h : x86-offsets.def object.h task.h
-	$Q cp $< $(out_dir)/offsets.c
-	$Q $(CC) -S $(out_dir)/offsets.c -I./ $(c_flags) -o $(out_dir)/offsets.s
+$(out_dir)/asm-offsets.h : asm-offsets.def object.h task.h
+	$Q cp $< $(out_dir)/asm-offsets.c
+	$Q $(CC) -S $(out_dir)/asm-offsets.c -I./ $(c_flags) -o $(out_dir)/asm-offsets.s
 	$Q $(offsets)
-
-x86.S : offsets.h
+c_flags += -I$(out_dir)
+x86.S : $(out_dir)/asm-offsets.h
 
 main.c : version.h

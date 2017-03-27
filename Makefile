@@ -22,13 +22,16 @@ MAKE = make
 RM = rm
 $(shell mkdir -p  $(kernel_dir) $(modules_dir))
 
-all : libs $(none) modules
+all : libs $(none) modules bin
 
 $(none) :  libs
 	$(Q) $(MAKE) $(q) -C $(KERNELDIR)
 
 modules : libs
 	$(Q) $(MAKE) $(q) -C $(MODULESDIR)
+
+bin : lib
+	$(Q) $(MAKE) $(q) -C usr/bin
 
 libs :
 	$(Q) $(MAKE) $(q) -C $(LIBDIR)
@@ -42,12 +45,12 @@ $(ramdisk) : modules
 	$(Q) cp $(out_dir)/bin/ $(out_dir)/ramdisk/ -r
 	$(Q) -rm -f -- $(modules_dir)/bin/none
 	$(Q) dd if=/dev/zero of=$(ramdisk) bs=1K count=4K
-	$(Q) mkfs.minix -3 $(ramdisk)
-	$(Q) su -c 'mount $(ramdisk) $(modules_dir)'
+	$(Q) mkfs.minix -2 $(ramdisk)
+	$(Q) export LIBGUESTFS_BACKEND="direct"; guestmount --format=raw -a $(ramdisk) -m /dev/sda $(modules_dir)
 	$(Q) chmod a+w $(modules_dir)
 	$(Q) cp $(out_dir)/ramdisk/* $(modules_dir)/ -r
-	$(Q) sleep 1
-	$(Q) su -c 'umount $(modules_dir)'
+	$(Q) sync
+	$(Q) guestunmount $(modules_dir)
 
 iso : $(none) $(ramdisk)
 	$(Q) echo "Building ISO..."

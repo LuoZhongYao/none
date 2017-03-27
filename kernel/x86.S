@@ -7,7 +7,7 @@
 #
 #include "const.h"
 #include "i8259.h"
-#include "offsets.h"
+#include "asm-offsets.h"
 
 .globl	divide_error               # 除法出错
 .globl	single_step_exception      # 单步异常
