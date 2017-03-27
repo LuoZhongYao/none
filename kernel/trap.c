@@ -158,7 +158,7 @@ extern void do_general_protection(long code,long *reg)
 
 extern void do_page_fault(long code,long *reg)
 {
-    int ret;
+    int ret = -1;
     void* cr2 = (void*)getcr2();
     if(!(code & 0x1)){
         ret = run(MM_PID,MIF_NOPAGE,cr2,0,0);

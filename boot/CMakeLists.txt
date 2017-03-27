@@ -1,4 +1,4 @@
 install(FILES 
     grub.cfg
-    DESTINATION boot/grub/
+    DESTINATION iso/boot/grub/
     )

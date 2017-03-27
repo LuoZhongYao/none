@@ -9,7 +9,7 @@ megs:64
 romimage: file=$BXSHARE/BIOS-bochs-latest
 
 # filename of VGAROM image
-vgaromimage: file=tools/VGABIOS-lgpl-latest.bin
+vgaromimage: file=../tools/VGABIOS-lgpl-latest.bin
 vga: extension=vbe
 
 # enable key mapping, using US layout as default.
@@ -21,7 +21,7 @@ keyboard: keymap=$BXSHARE/keymaps/x11-pc-us.map
 #硬盘数据
 #ata0: enabled=1, ioaddr1=0x1f0,ioaddr2=0x3f0,irq=3
 #ata0-master: type=disk, path="out/img/c.img", mode=flat, cylinders=20, heads=16, spt=63
-ata0-master:  type=cdrom, path="build/none.iso", status=inserted
+ata0-master:  type=cdrom, path="none.iso", status=inserted
 #ata0-master:  type=cdrom, path="out/img/toaruos.iso", status=inserted
 
 # choose the boot disk.
@@ -29,7 +29,7 @@ ata0-master:  type=cdrom, path="build/none.iso", status=inserted
 boot:cdrom 
 
 # com1
-com1: enabled=1,mode=file,dev=out/serial.txt
+com1: enabled=1,mode=file,dev=serial.txt
 
 #使用主机的虚拟网卡
 #ne2k: ioaddr=0x300, irq=3, mac=b0:c4:20:00:00:00, ethmod=null, ethdev=eth0 

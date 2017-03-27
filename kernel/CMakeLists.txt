@@ -11,6 +11,8 @@ enable_language(ASM-ATT)
 
 set(ASM-OFFSETS asm-offsets)
 set(ASM_OFFSET_PROGM "${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} -S -I${CMAKE_CURRENT_SOURCE_DIR} -I${CMAKE_SOURCE_DIR}/include")
+#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T${CMAKE_CURRENT_BINARY_DIR}/kernel.lds")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Ttext 0x301000")
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${ASM-OFFSETS}.h
@@ -21,6 +23,15 @@ add_custom_command(
     VERBATIM
     )
 
+execute_process(
+    COMMAND git describe --tags --long
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_SHA1
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version.h.in  ${CMAKE_CURRENT_BINARY_DIR}/version.h @ONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/kernel.lds.in ${CMAKE_CURRENT_BINARY_DIR}/kernel.lds @ONLY)
 add_executable(none 
     _setup.S
     x86.S
@@ -43,4 +54,4 @@ target_link_libraries(none
 
 install(TARGETS 
     none
-    DESTINATION boot/)
+    DESTINATION iso/boot/)

@@ -1,0 +1,20 @@
+SECTIONS
+{
+    . = 0x301000;
+    .text :
+    {
+        *_setup.o (.text);
+        *(.text*);
+        *(.rodata*)
+    }
+    ._etext = .;
+
+    . = ALIGN(4);
+    .data : { *(.data) }
+    _edata = .;
+    
+    . = ALIGN(4);
+    .bss : { *(.bss) }
+    _end = .;
+
+}

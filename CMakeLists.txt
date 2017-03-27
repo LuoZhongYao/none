@@ -9,18 +9,25 @@ if(CCACHE_FOUND)
 endif(CCACHE_FOUND)
 
 set(CMAKE_ASM-ATT_FLAGS "--32")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -std=c11 -fno-builtin -nostdinc -Wall -Werror -fno-stack-protector")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -Wl,--build-id=none -std=c11 -fno-builtin -nostdinc -Wall -Werror -fno-stack-protector -fomit-frame-pointer -fno-exceptions -fno-asynchronous-unwind-tables -fno-unwind-tables")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -Wl,--build-id=none -std=c11")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-builtin -nostdinc -Wall -Werror")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-stack-protector")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fomit-frame-pointer")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-exceptions")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-asynchronous-unwind-tables -fno-unwind-tables")
+
 set(CMAKE_C_FLAGS_DEBUG "-g" )
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
-set(CMAKE_EXE_LINKER_FLAGS "-m32 -nostdlib")
+set(CMAKE_EXE_LINKER_FLAGS "-nostdlib")
 
 add_definitions(
-    -D__NONE__
+    -D__NONE__=1
     )
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # Configure CCache if available
 
 include_directories(include)

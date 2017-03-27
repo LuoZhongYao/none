@@ -56,7 +56,7 @@ iso : $(none) $(ramdisk)
 	$(Q) echo "Building ISO..."
 	$(Q) mkdir -p $(cdrom)/boot/grub/
 	$(Q) cp tools/grub.cfg $(cdrom)/boot/grub/
-	$(Q) cp $(none) $(cdrom)/ 
+	$(Q) cp $(none) $(cdrom)/
 	$(Q) cp $(ramdisk) $(cdrom)/ 
 	$(Q) grub2-mkrescue -d /usr/lib/grub/i386-pc -o $(iso) $(cdrom)
 

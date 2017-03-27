@@ -1,0 +1,4 @@
+#ifndef __VERSION_H__
+#define __VERSION_H__
+#define KERNEL_VERSION "@GIT_SHA1@"
+#endif

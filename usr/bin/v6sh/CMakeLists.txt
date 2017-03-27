@@ -12,5 +12,5 @@ target_link_libraries(v6sh
 
 install(TARGETS 
     v6sh
-    DESTINATION bin/
+    DESTINATION ramdisk/bin/
     )
