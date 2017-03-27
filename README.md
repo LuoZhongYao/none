@@ -3,6 +3,8 @@
 [GITHUB]: https://github.com/LuoZhongYao/none
 [lzy]: mail:LuoZhongYao@gmail.com
 
+![Build Status](https://travis-ci.org/LuoZhongYao/none.svg?branch=master)
+
 <h2 id="overview">概述</h2>
 ![None新特性预览](http://r.photo.store.qq.com/psb?/2f055629-26d1-450a-b719-0c9a5862abb4/8f5clD6S9VIPUSTIu8Oa52PZh58NjPIIgMlTow0Hi6A!/o/dMaLGsdKEAAA&bo=oAWEA6AFhAMCACQ!&t=5&rf=viewer_311)
 
