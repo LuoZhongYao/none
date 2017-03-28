@@ -12,7 +12,7 @@ set(CMAKE_ASM-ATT_FLAGS "--32")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -Wl,--build-id=none -std=c11 -fno-builtin -nostdinc -Wall -Werror -fno-stack-protector -fomit-frame-pointer -fno-exceptions -fno-asynchronous-unwind-tables -fno-unwind-tables")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -Wl,--build-id=none -std=c11")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-builtin -nostdinc -Wall -Werror")
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-stack-protector")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-stack-protector") # Ubuntu default -fstack-protector
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fomit-frame-pointer")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-exceptions")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-asynchronous-unwind-tables -fno-unwind-tables")
