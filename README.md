@@ -20,17 +20,20 @@ sudo yum install bochs
 ```
 
 通过git获取none
+
 ```bash
 git clone https://github.com/LuoZhongYao/none.git
 ```
 
 <h3 id='run'>运行</h3>
+
 `out/img/none.iso`,`out/img/ramdisk.img`是已经编译好的的启动镜像(可启动光盘镜像)和ramdisk镜像,直接可以在bochs下运行.安装好bochs后使用如下命令即可运行
 ```bash
 bochs
 ```
 
 <h2 id="compile">编译none</h2>
+
 ```bash
 git clone https://github.com/LuoZhongYao/none.git # 下载源码
 cd none                 # 进入none源码目录
