@@ -5,8 +5,6 @@
 
 ![Build Status](https://travis-ci.org/LuoZhongYao/none.svg?branch=master)
 
-![None新特性预览](http://r.photo.store.qq.com/psb?/2f055629-26d1-450a-b719-0c9a5862abb4/8f5clD6S9VIPUSTIu8Oa52PZh58NjPIIgMlTow0Hi6A!/o/dMaLGsdKEAAA&bo=oAWEA6AFhAMCACQ!&t=5&rf=viewer_311)
-
 <h2 id="overview">概述</h2>
 
 <h3 id='prepare'>准备</h3>
